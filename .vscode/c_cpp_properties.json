@@ -1,0 +1,17 @@
+{
+    "configurations": [
+        {
+            "name": "cppstandard",
+            "cppStandard": "c++20",
+            "intelliSenseMode": "linux-gcc-x64",
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu17",
+            "includePath": [
+                "src",
+                "vendor",
+                "vendor/rapidjson/include"
+            ]
+        }
+    ],
+    "version": 4
+}

@@ -1,0 +1,6 @@
+[submodule "vendor/args"]
+	path = vendor/args
+	url = https://github.com/Taywee/args
+[submodule "vendor/rapidjson"]
+	path = vendor/rapidjson
+	url = https://github.com/Tencent/rapidjson

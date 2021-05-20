@@ -1,0 +1,46 @@
+{
+    "title": "Watchman Configuration JSON Schema",
+    "description": "JSON Schema definition for Watchman",
+
+    "type": "object",
+    "properties": {
+        "extensions": {
+            "title": "File extensions to watch",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "pattern": "^[a-zA-Z]+$"
+            }
+        },
+        "files": {
+            "title": "Files to watch",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "excludedDirectories": {
+            "title": "Directories to ignore",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "command": {
+            "title": "The command to run when change is detected",
+            "type": "string"
+        },
+        "showChangedFileName": {
+            "title": "Show which file was changed if this is true",
+            "type": "boolean"
+        },
+        "recursive": {
+            "title": "Recursively search for files with matching name/extension",
+            "type": "boolean"
+        },
+        "verbose": {
+            "title": "Show file events if this is true",
+            "type": "boolean"
+        }
+    }
+}
