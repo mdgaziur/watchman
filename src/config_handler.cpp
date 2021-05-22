@@ -57,35 +57,19 @@ int handle_config(std::string filename)
         }
     }
     
-    if(document.HasMember("files"))
+    if(document.HasMember("exclude"))
     {
-        if(document["files"].IsArray()) {
-            const rapidjson::Value& files_array = document["files"];
-            for(rapidjson::SizeType i = 0; i < files_array.Size(); i++)
-            {
-                if(!files_array[i].IsString())
-                    logger.write(LOG_LEVEL::FATAL, "Expected files in files object to be string", true);
-                config->filenames.push_back(files_array[i].GetString());
-            }
-        }
-        else {
-            logger.write(LOG_LEVEL::FATAL, "'files' property should be an array", true);
-        }
-    }
-    
-    if(document.HasMember("excludedDirectories"))
-    {
-        if(document["excludedDirectories"].IsArray()) {
-            const rapidjson::Value& dirs_array = document["excludedDirectories"];
+        if(document["exclude"].IsArray()) {
+            const rapidjson::Value& dirs_array = document["exclude"];
             for(rapidjson::SizeType i = 0; i < dirs_array.Size(); i++)
             {
                 if(!dirs_array[i].IsString())
-                    logger.write(LOG_LEVEL::FATAL, "Expected dirs in excludedDirectories object to be string", true);
-                config->excluded_dirs.push_back(dirs_array[i].GetString());
+                    logger.write(LOG_LEVEL::FATAL, "Expected paths in exclude object to be string", true);
+                config->excluded.push_back(dirs_array[i].GetString());
             }
         }
         else {
-            logger.write(LOG_LEVEL::FATAL, "'excludedDirectories' property should be an array", true);
+            logger.write(LOG_LEVEL::FATAL, "'exclude' property should be an array", true);
         }
     }
 
@@ -122,9 +106,7 @@ int handle_config(std::string filename)
     }
 
     if (!(
-        config->command.size() > 0 && config->excluded_dirs.size() > 0 && config->excluded_dirs[0].size() > 0
-        && config->extensions.size() > 0 && config->extensions[0].size() > 0 && config->filenames.size() > 0
-        && config->filenames[0].size() > 0
+        config->command.size() > 0
     )) {
         logger.write(LOG_LEVEL::FATAL, std::string("Config file is invalid. Check the docs about how to make config file"), true);
     }

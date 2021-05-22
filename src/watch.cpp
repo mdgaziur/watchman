@@ -109,7 +109,7 @@ int watch(watchman_config *config) {
         logger.write(LOG_LEVEL::FATAL, "Failed to initialize inotify for watching files!", true);
     }
 
-    for (auto f: get_files(p, config->excluded_dirs, config->recursive)) {
+    for (auto f: get_files(p, config->excluded, config->recursive)) {
         inotify_add_watch(inotify_fd, f.c_str(), IN_MODIFY | IN_CREATE | IN_DELETE);
     }
 
@@ -124,7 +124,12 @@ int watch(watchman_config *config) {
         for(s = buf; s < buf + rd_s;) {
             struct inotify_event *ie = (struct inotify_event *)s;
 
-            if (!has_value(config->excluded_dirs, std::string() + ie->name)) {
+            if (!has_value(config->excluded, std::string() + ie->name)) {
+                if (std::filesystem::path((char*)ie->name).has_extension()) {
+                    if(!has_value(config->extensions, std::filesystem::path((char*)ie->name).extension().string())) {
+                        continue;
+                    }
+                }
                 if (config->verbose)
                     display_event(ie);
                 changed_ones += 1;

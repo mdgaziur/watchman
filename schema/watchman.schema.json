@@ -9,7 +9,7 @@
             "type": "array",
             "items": {
                 "type": "string",
-                "pattern": "^[a-zA-Z]+$"
+                "pattern": "\\.^[a-zA-Z]"
             }
         },
         "files": {
@@ -19,8 +19,8 @@
                 "type": "string"
             }
         },
-        "excludedDirectories": {
-            "title": "Directories to ignore",
+        "exclude": {
+            "title": "Directories or files to ignore",
             "type": "array",
             "items": {
                 "type": "string"

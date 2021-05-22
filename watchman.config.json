@@ -1,22 +1,18 @@
 {
     "extensions": [
-        "hpp",
-        "cpp"
+        ".hpp",
+        ".cpp"
     ],
-    "files": [
-        "CMakeLists.txt",
-        "build.py"
-    ],
-    "excludedDirectories": [
+    "exclude": [
         "vendor",
         "build",
         ".git",
         ".vscode",
         "schema",
-        "debug-log.txt",
         ".VSCodeCounter"
     ],
-    "command": "./build.py",
+    "command": "echo",
     "showChangedFileName": true,
-    "recursive": true
+    "recursive": true,
+    "verbose": true
 }
