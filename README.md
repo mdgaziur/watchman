@@ -10,7 +10,7 @@ Create watchman.config.json in the directory where the program will watch for. Y
 this program's source codes root directory can be used as a template.
 
 ## Is it platform independent?
-I will only work on Linux afaik. I'm not planning to add support for any other platform.
+It will only work on Linux afaik. I'm not planning to add support for any other platform.
 
 ## Contributing
 Any bugs, features? Make issue and PRs.
